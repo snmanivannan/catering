@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.delivery_dining,color: Colors.black,),label: 'delivery',),
           BottomNavigationBarItem(icon: Icon(Icons.restaurant,color: Colors.black,),label: "dining"),
-          BottomNavigationBarItem(icon: Icon(Icons.wallet,color: Colors.black,),label: "wallet"),
+          BottomNavigationBarItem(icon: Icon(Icons.restaurant,color: Colors.black,),label: "wallet"),
           //BottomNavigationBarItem(icon: Icon(Icons.wallet,color: Colors.red),label: "Wallet")
         ],
       ),

@@ -1,7 +1,8 @@
-import 'package:catering/views/products_list.dart';
+
 //import 'package:catering/widgets/flutter_sample.dart';
 import 'package:flutter/material.dart';
 import 'splash_screen.dart';
+import 'views/products_list.dart';
 
 void main()
 {

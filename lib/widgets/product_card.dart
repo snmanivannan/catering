@@ -1,10 +1,27 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
-    Key? key,
-  }) : super(key: key);
+  final int id;
+  final String name, logo, desc, url, cuisine;
+
+  final double rating;
+
+  //final bool isFavourite, isPopular;
+
+  const ProductCard(
+      {Key? key,
+      required this.id,
+      this.rating = 0.0,
+      required this.name,
+      required this.logo,
+      required this.desc,
+      required this.url,
+      required this.cuisine})
+      : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,28 +32,52 @@ class ProductCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-      child:Column(
+      child: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
-            ),
-            child: Image(
-              image: AssetImage("assets/flutterlogo.png"),
-              fit: BoxFit.fill,
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(
+                left: 30,
+                right: 30,
+                top: 21,
+              ),
+              child: Stack(
+                fit: StackFit.passthrough,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(
+                      bottom: 8,
+                    ),
+                    child: Image.asset(
+                      logo,
+                      fit: BoxFit.fill,
+                      alignment: Alignment.topCenter,
+                      //height: 100,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
+
+          // ClipRRect(
+          //   borderRadius: BorderRadius.only(
+          //     topLeft: Radius.circular(30),
+          //     topRight: Radius.circular(30),
+          //   ),
+          //   child: Image.asset(logo, fit:BoxFit.fill),
+          // ),
+
           SizedBox(height: 10),
           Container(
             margin: EdgeInsets.only(left: 20),
             alignment: Alignment.topLeft,
-            child: Text("Cafe Badilio",
+            child: Text(
+              name,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: Colors.black
-              ),
+                  fontSize: 20,
+                  color: Colors.black),
             ),
           ),
           SizedBox(height: 10),
@@ -45,37 +86,71 @@ class ProductCard extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: Row(
               children: <Widget>[
-                IconButton(onPressed: (){}, icon: Icon(Icons.star)),
-                IconButton(onPressed: (){}, icon: Icon(Icons.star)),
-                IconButton(onPressed: (){}, icon: Icon(Icons.star)),
-                IconButton(onPressed: (){}, icon: Icon(Icons.star)),
-                IconButton(onPressed: (){}, icon: Icon(Icons.star_half)),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.star,
+                      color: Colors.yellow,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.star, color: Colors.yellow)),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.star, color: Colors.yellow)),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.star, color: Colors.yellow)),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.star_half, color: Colors.yellow)),
               ],
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Container(
             margin: EdgeInsets.only(left: 20),
             alignment: Alignment.topLeft,
-            child: Text("Italian,Cafe",
+            child: Text(
+              cuisine,
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: Colors.black
-              ),
+                  fontWeight: FontWeight.w200,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 15,
+                  color: Colors.black),
             ),
           ),
           SizedBox(height: 20),
           Container(
             margin: EdgeInsets.only(left: 20),
             alignment: Alignment.topLeft,
-            child: Text("Small plates, Salads & sandwhiches an initimate setting with an 12 indoor seats plus patio seating",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black
-              ),
+            child: Text(
+              desc,
+              style: TextStyle(fontSize: 15, color: Colors.black),
             ),
           ),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextButton(
+                child: const Text('ORDER NOW'),
+                onPressed: () async {
+                  final Uri _url = Uri.parse(url);
+                  if (!await launchUrl(
+                    _url,
+                    mode: LaunchMode.externalApplication,
+                  )) {
+                    throw 'Could not launch $_url';
+                  }
+                },
+              ),
+              const SizedBox(width: 8),
+            ],
+          ),
+          SizedBox(height: 10),
         ],
       ),
     );

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Product{
-
+class Product {
   final int id;
-  final String name, logo, desc, url;
+  final String name, logo, desc, url, cuisine;
+
   //final List<String> images;
   //final List<Color> colors;
   final double rating;
+
   //final bool isFavourite, isPopular;
 
   Product({
@@ -16,6 +17,7 @@ class Product{
     required this.logo,
     required this.desc,
     required this.url,
+    required this.cuisine,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class Product{
       logo: json['logo'] as String,
       desc: json['desc'] as String,
       url: json['url'] as String,
+      cuisine: json['cuisine'] as String,
     );
   }
 }
