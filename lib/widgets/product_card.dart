@@ -142,7 +142,7 @@ class ProductCard extends StatelessWidget {
     ),
 
     child:Text(
-    'Order Now',
+    'ORDER NOW',
     style: TextStyle(
     fontWeight: FontWeight.bold,
     color: Colors.white,
