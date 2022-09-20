@@ -32,12 +32,18 @@ class _ProductsListState extends State<ProductsList> {
         _items.isNotEmpty
             ? Expanded(
                 child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount:
-                          screenWidth(context) > screenHeight(context) ? 3 : 1,
-                      childAspectRatio: 181 / 234,
-                      crossAxisSpacing: 18,
-                      mainAxisSpacing: 20),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 400,
+                      childAspectRatio: 181/234,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+
+                      // crossAxisCount:
+                      //     screenWidth(context) > screenHeight(context) ? 3 : 1,
+                      // childAspectRatio: 181 / 234,
+                      // crossAxisSpacing: 18,
+                      // mainAxisSpacing: 20
+                  ),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 17, vertical: 20),
                   itemCount: _items.length,
