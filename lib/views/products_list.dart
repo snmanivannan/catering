@@ -76,8 +76,9 @@ class _ProductsListState extends State<ProductsList> {
   }
 
   Future<void> readJson() async {
-    //final String response = await rootBundle.loadString('json/hotels.json');
-    List<dynamic> data = jsonDecode(jsonText)["products"];
+    final String response = await rootBundle.loadString('json/hotels.json');
+    List<dynamic> data = jsonDecode(response)["products"];
+    //String data = await DefaultAssetBundle.of(context).loadString("assets/data.json");
 
     setState(() {
       _items = data.map((object) => Product.fromJson(object)).toList();

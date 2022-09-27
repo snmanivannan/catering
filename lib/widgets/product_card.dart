@@ -117,6 +117,7 @@ class ProductCard extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: Text(
               desc,
+              maxLines: 3,
               style: TextStyle(fontSize: 15, color: Colors.black),
             ),
           ),
